@@ -1,0 +1,27 @@
+.title{
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+    margin: 0;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.about{
+    display: block;
+    width: 60vw;
+    margin-top:40px;
+    margin-left: 15vw;
+    margin-right: 15vw;
+}
+
+@media (max-width:768px){
+    .about{
+        width:90vw;
+        margin-top:40px;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}

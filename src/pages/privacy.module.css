@@ -1,0 +1,15 @@
+.Policy{
+    width: 60vw;
+    margin-top:40px;
+    margin-left: 15vw;
+    margin-right: 15vw;
+}
+
+@media (max-width:768px){
+    .Policy{
+        width: 90vw;
+        margin-top:40px;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}
