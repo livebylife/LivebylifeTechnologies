@@ -2,7 +2,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 const {createProxyMiddleware} = require('http-proxy-middleware')
-console.log(process.env.GATSBY_API_URL + process.env.GATSBY_API_BASE)
 module.exports = {
   developMiddleware: app => {
     app.use(
