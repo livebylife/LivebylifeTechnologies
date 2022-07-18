@@ -4,7 +4,7 @@ import './global.css'
 import Seo from './seo'
 import Navigation from './navigation'
 import Footer from './footer'
-
+import * as styles from './layout.module.scss'
 
 class Template extends React.Component {
   render() {
@@ -15,10 +15,13 @@ class Template extends React.Component {
     return (
       <>
         <Seo />
-        
           <Navigation logo={navLogo} title={siteTitle} />
-        
         <main>{children}</main>
+        <div className={styles.downScrollArrowContainer}>
+          <div className={styles.chevron}></div>
+          <div className={styles.chevron}></div>
+          <div className={styles.chevron}></div>
+        </div>
         <Footer />
       </>
     )

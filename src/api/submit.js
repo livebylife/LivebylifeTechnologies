@@ -31,22 +31,6 @@ export default async function handleSubmit(req, res){
             )
         })
         
-        
-        /* fetch('https://api.livebylife.com/webform_rest/submit',{
-            method: 'POST',
-            headers: {
-                'Content-Type': "application/json",
-                
-                'api-key': process.env.API_KEY,
-            },
-            body,
-        }).then((res) => {
-            console.log("Got a response from the API")
-            console.log(res)
-        }, (error) =>{
-            console.log("somethin bad happened, lets figure this out.")
-            console.log(error)
-        }) */
     }
     return null
 }

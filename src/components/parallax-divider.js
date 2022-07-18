@@ -6,7 +6,7 @@ export default function ParallaxDivider(imageUrl){
     
     return(
         <div css={css`
-             background-image: url(${'https://api.livebylife.com' + imageUrl.imageUrl});
+             background-image: url(${process.env.GATSBY_API_URL + imageUrl.imageUrl});
              height: 40vh;
              background-attachment:fixed;
              background-position:center;

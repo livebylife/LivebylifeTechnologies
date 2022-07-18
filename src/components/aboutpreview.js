@@ -1,9 +1,9 @@
 import React from 'react'
-import * as styles from './about-preview.module.css'
 import Container from './container'
+import * as styles from './articlepreview.module.css'
 
-const aboutPreview = ({aboutContent}) =>{ 
-    return(
+const aboutPreview = ({aboutContent}) => {
+    return (
         <Container>
             <div className={styles.aboutContent}>
                 <div
@@ -14,5 +14,5 @@ const aboutPreview = ({aboutContent}) =>{
         </Container>
     )
 }
-
 export default aboutPreview
+

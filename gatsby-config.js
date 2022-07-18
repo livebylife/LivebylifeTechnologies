@@ -13,13 +13,16 @@ module.exports = {
     )
   },
   siteMetadata: {
-    title: `LivebyLife Technologies`,
+    title: `Live by Life Technologies`,
     siteUrl: `https://www.livebylife.com`,
     description: `We create blazing fast, modern apps`,
   },
-  plugins: ["gatsby-plugin-image",
+  plugins: [
+            "gatsby-plugin-sass",
+            "gatsby-plugin-image",
             "gatsby-plugin-react-helmet", 
             "gatsby-plugin-sitemap",
+            
             {
               resolve: "gatsby-plugin-htaccess",
               options:{

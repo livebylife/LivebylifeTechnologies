@@ -10,7 +10,7 @@ const ServicePreview = ({services}) => {
     return (
         <Container>
             <div className={styles.titleWrap}>
-                <h1 className='servicesTitle'>What can we do for you</h1>
+                <h1 className='servicesTitle'>What can I do for you</h1>
             </div>
             <div className={styles.services}>
                 <ul className={styles.serviceList}>
