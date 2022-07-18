@@ -23,7 +23,6 @@ class RootIndex extends React.Component{
     const services = siteData.relationships.node__domain_services
     const parallaxImages = this.props?.data?.allNodeParallaxDivider.edges[0].node
     
-    console.log(siteData.relationships.node__domain_about[0].body.processed)
     return(
       <>
         <Helmet title={siteName} defer={false}/>
