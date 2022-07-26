@@ -4,3 +4,4 @@ node_modules/
 .cahe/
 .env.*
 node_modules.*
+.cpanel.yml
