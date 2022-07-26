@@ -1,17 +1,17 @@
 import React, {useState} from 'react'
-import axios from 'axios'
-import ReactDOM from 'react-dom';
-import MessengerChat from './MessengerChat';
-
 import * as styles from './contact.module.css'
+const LazyLoadMessenger = React.lazy(() => import('./MessengerChat'))
 
 const Contact = () => {
    
   const [serverState, setServerState] = useState({submitting: false, status: null});
   const [style, setStyle] = useState("show")
+  const [buttonText, setButtonText] = useState("Send it")
   const pageId = process.env.META_PAGE_ID
   const appId = process.env.META_MESSENGER_TOKEN
+
   const showHide = () => {setStyle("hide")}
+
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
       submitting: false,
@@ -33,7 +33,7 @@ const Contact = () => {
     const name = e.target.name.value
     const email_address = e.target.email.value
     const message = e.target.message.value
-    
+    setButtonText('Sending it...')
     fetch('/api/submit', {
       method:'POST',
       body: JSON.stringify({
@@ -42,11 +42,11 @@ const Contact = () => {
         "email_address": email_address,
         "message": message
       }),
-    }).then((data) => {
-      console.log('Response from server:')
-      console.log(data)
+    }).then((res) => {
+      alert("got it thank you")
+      setButtonText('We got it. Thank you')
     })
-     
+    setButtonText('We got it. Thank you')
   } 
   
   return (
@@ -64,21 +64,21 @@ const Contact = () => {
                   <input type="text" placeholder='Name' id='name' name='name' onChange={handleChange}/>
                 </div>
                 <div className={styles.colmd5}>
-                  <input type="text" placeholder='Email' id='email' name='email' onChange={handleChange}/>
+                  <input type="email" placeholder='Email' id='email' name='email' onChange={handleChange}/>
                 </div>
                 <div className={styles.colmd5}>
                   <textarea placeholder='Message' id='message' name='message' onChange={handleChange}/>
                 </div>
                 <div className={styles.colmd5}>
-                  <input type="submit" value="Send it"/>
+                  <input type="submit" value={buttonText}/>
                 </div>
                 <div className={styles.serverResponse} id="serverResponse">
-                  <span id="serverResponse" name="serverResponse"></span>
+                  <showHide> <span id="serverResponse" name="serverResponse"></span></showHide>
                 </div>
               </form>
             </div>
             <div className={styles.chat}>
-            <MessengerChat
+            <LazyLoadMessenger
               pageId={process.env.META_PAGE_ID}
               appId={process.env.META_MESSENGER_TOKEN}
               htmlRef={this?.props?.location.pathname}
