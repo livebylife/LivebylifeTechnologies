@@ -57,7 +57,7 @@ const Contact = () => {
               </h1>
             </div>
             <div className={styles.mt5}>
-              <form onSubmit={handleSubmit} method='post' action='https://api.livebylife.com/reach-out'>
+              <form action='https://api.livebylife.com/reach-out'>
                 <div className={styles.colmd5}>
                   <input type="text" placeholder='Name' id='name' name='name' onChange={handleChange}/>
                 </div>
