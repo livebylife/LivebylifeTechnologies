@@ -7,8 +7,6 @@ const Contact = () => {
   const [serverState, setServerState] = useState({submitting: false, status: null});
   const [style, setStyle] = useState("show")
   const [buttonText, setButtonText] = useState("Send it")
-  const pageId = process.env.META_PAGE_ID
-  const appId = process.env.META_MESSENGER_TOKEN
 
   const showHide = () => {setStyle("hide")}
 

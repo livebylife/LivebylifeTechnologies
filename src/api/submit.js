@@ -16,6 +16,7 @@ export default async function handleSubmit(req, res){
             })
             .then(
             (data) => {
+                console.log("fetch post successful")
                 return (data)
             },(error) => {
                return(error)
