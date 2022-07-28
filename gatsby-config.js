@@ -2,6 +2,7 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 const {createProxyMiddleware} = require('http-proxy-middleware')
+const cors = require('cors')
 module.exports = {
   developMiddleware: app => {
     app.use(
@@ -11,6 +12,7 @@ module.exports = {
         changeOrigin:true
       })
     )
+    app.use(cors())
   },
   siteMetadata: {
     title: `Live by Life Technologies`,
@@ -21,6 +23,7 @@ module.exports = {
             "gatsby-plugin-sass",
             "gatsby-plugin-image",
             "gatsby-plugin-react-helmet", 
+            "gatsby-plugin-gatsby-cloud",
             "gatsby-plugin-sitemap",
             
             {
