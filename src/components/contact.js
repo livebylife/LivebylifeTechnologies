@@ -41,10 +41,11 @@ const Contact = () => {
         "message": message
       }),
     }).then((res) => {
-      alert("got it thank you")
+      
+      alert("got it thank you" + res.status)
       setButtonText('We got it. Thank you')
     })
-    setButtonText('We got it. Thank you')
+    
   } 
   
   return (

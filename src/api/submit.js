@@ -2,6 +2,7 @@ import fetch from "node-fetch"
 
 export default async function handleSubmit(req, res){
     let body = req.body
+    console.log("api loaded")
     if(req.method === 'POST'){
         fetch(process.env.GATSBY_API_TOKEN_ADDRESS, {method:"GET"}).then(res => {
             const csrfToken = res.data;
@@ -23,7 +24,7 @@ export default async function handleSubmit(req, res){
             }
             )
         })
-        
+        console.log("Fetch done")
     }
     return null
 }
