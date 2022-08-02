@@ -31,8 +31,9 @@ const Contact = () => {
     const name = e.target.name.value
     const email_address = e.target.email.value
     const message = e.target.message.value
+    const server = process.env.SERVER_URL
     setButtonText('Sending it...')
-    fetch('/api/submit', {
+    fetch(server + '/api/submit', {
       method:'POST',
       body: JSON.stringify({
         'webform_id':webform_id,
