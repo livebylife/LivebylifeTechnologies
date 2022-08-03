@@ -4,3 +4,5 @@ node_modules/
 .cahe/
 .env.*
 node_modules.*
+public/
+public.*

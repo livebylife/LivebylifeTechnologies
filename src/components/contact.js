@@ -21,7 +21,7 @@ const Contact = () => {
     const email_address = e.target.email.value
     const message = e.target.message.value
     setButtonText('Sending it...')
-    fetch(url, {
+    await fetch(url, {
       method:'POST',
       body: JSON.stringify({
         'webform_id':webform_id,
