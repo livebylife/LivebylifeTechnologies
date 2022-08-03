@@ -15,7 +15,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target
-    const url = process.env.SERVER_URL + '/api/submit'
+    const url = process.env.GATSBY_SERVER_URL + '/api/submit'
     const webform_id = "reach_out"
     const name = e.target.name.value
     const email_address = e.target.email.value
