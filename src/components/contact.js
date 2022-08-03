@@ -30,6 +30,7 @@ const Contact = () => {
         "message": message
       }),
     }).then((res) => {
+      console.log(res.body)
       setButtonText('Thank you')
       e.target.name.value = ""
       e.target.email.value = ""
