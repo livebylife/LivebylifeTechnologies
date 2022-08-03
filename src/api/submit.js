@@ -51,14 +51,14 @@ export default async function handleSubmit(req, res){
 
     let body = req.body
     if(req.method === 'POST'){
-        fetch(
+        await fetch(
                 process.env.GATSBY_API_TOKEN_ADDRESS, 
                 {
                     method:"GET"
                 }
             ).then(res => {
                 const csrfToken = res.data;
-                fetch(process.env.GATSBY_API_REACH_OUT_ADDRESS,{
+                await fetch(process.env.GATSBY_API_REACH_OUT_ADDRESS,{
                 method: 'POST',
                 headers: {
                     'Content-Type': "application/json",
