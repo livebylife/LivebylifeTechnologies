@@ -1,6 +1,54 @@
 import fetch from "node-fetch"
+import axios from "axios"
+
+
 
 export default async function handleSubmit(req, res){
+
+// ~~~ from freeCodeCamp
+    let csrfToken = await axios.get(
+        process.env.GATSBY_API_TOKEN_ADDRESS
+        )
+        .then((response) => {
+            
+            return response.data
+         }
+        )
+        .catch((error) => {
+            // Lets log the error but return null to move on.
+            console.log("Error from API session token GET")
+            console.log(error)
+            return null
+         }
+        )
+
+    if (csrfToken != null){
+        axios({
+            method: 'post',
+            url:process.env.GATSBY_API_REACH_OUT_ADDRESS,
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken,
+                "api-key": process.env.API_KEY
+            },
+            data: req.body
+        })
+        .then((response) => {
+            
+            res.status(200).send(response)
+        })
+        .catch((error) => {
+            
+            res.status(500).send(error)
+        })
+
+        return null
+    }
+    return null
+
+
+// ~~~ Labled as trying
+
 
     // if(req.method === 'POST') {
     //     let csrfToken = ''
@@ -48,36 +96,36 @@ export default async function handleSubmit(req, res){
 
 
 
-
-    let body = req.body
-    if(req.method === 'POST'){
-        await fetch(
-                process.env.GATSBY_API_TOKEN_ADDRESS, 
-                {
-                    method:"GET"
-                }
-            ).then(res => {
-                const csrfToken = res.data;
-                await fetch(process.env.GATSBY_API_REACH_OUT_ADDRESS,{
-                method: 'POST',
-                headers: {
-                    'Content-Type': "application/json",
-                    'X-CSRF-Token': csrfToken,
-                    'api-key': process.env.API_KEY,
-                },
-                body
-            })
-            .then(
-            (resp) => {
-                res.send(resp)
-            },(error) => {
-               return(error)
-            }
-            ).catch((error) => {
-                return(error)
-            })
-        })
+//~~~~~~~~~ Below works on localhost
+    // let body = req.body
+    // if(req.method === 'POST'){
+    //     fetch(
+    //             process.env.GATSBY_API_TOKEN_ADDRESS, 
+    //             {
+    //                 method:"GET"
+    //             }
+    //         ).then(res => {
+    //             const csrfToken = res.data;
+    //             fetch(process.env.GATSBY_API_REACH_OUT_ADDRESS,{
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': "application/json",
+    //                 'X-CSRF-Token': csrfToken,
+    //                 'api-key': process.env.API_KEY,
+    //             },
+    //             body
+    //         })
+    //         .then(
+    //         (resp) => {
+    //             res.send(resp)
+    //         },(error) => {
+    //            return(error)
+    //         }
+    //         ).catch((error) => {
+    //             return(error)
+    //         })
+    //     })
         
-    }
-    return null
+    // }
+    // return null
 }
