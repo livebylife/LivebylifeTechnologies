@@ -7,7 +7,7 @@ export default async function handleSubmit(req, res){
 
 // ~~~ from freeCodeCamp
     let csrfToken = await axios.get(
-        process.env.GATSBY_API_TOKEN_ADDRESS
+        'https://api.livebylife.com/session/token'
         )
         .then((response) => {
             
@@ -25,7 +25,7 @@ export default async function handleSubmit(req, res){
     if (csrfToken != null){
         axios({
             method: 'post',
-            url:process.env.GATSBY_API_REACH_OUT_ADDRESS,
+            url:'https://api.livebylife.com/webform_rest/submit?_format=json',
             headers: {
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": csrfToken,
