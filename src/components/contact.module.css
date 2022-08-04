@@ -4,7 +4,7 @@ section {
     min-width: 280px;
     max-width: 100%;
     padding: 1rem 2rem 5rem;
-    background-color: #393939;
+    background-color: #fbfbfb;
     border-radius: 8px;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
     margin: 50px auto;
@@ -13,24 +13,19 @@ section {
     font-size: 0.8rem;
 }
 
-.hp {
-    display: none;
-}
-
 .container {
     margin: 0 2rem;
     text-align: left; 
 }
 
-.sectionTitle {
+h1 .sectionTitle {
     display: table;
-    margin: 20px auto;
-    color:white;
-    font: 2.8em Roboto;
-    
-    /* text-transform: uppercase; */
-    letter-spacing: 6px;
-    text-align: center;
+    margin: 40px auto;
+    color:slategrey;
+    font: 30px Helvetica;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
 }
 form {
     display: table;
@@ -43,7 +38,6 @@ form input, form textarea {
     border: none;
     padding: 20px;
     max-width: 400px;
-    min-width: 300px;
     margin-bottom: 20px;
     font-size: 18px;
     outline: none;
@@ -51,7 +45,7 @@ form input, form textarea {
 }
 form input::placeholder, form textarea::placeholder {
     transition: all 0.2s ease-in-out;
-    color: rgb(130, 129, 129);
+    color: #999;
     font: 18px Helvetica, Arial, sans-serif;
 }
 form input:focus, form textarea:focus, form input.populated, form textarea.populated {
@@ -64,7 +58,7 @@ form input:focus::placeholder, form textarea:focus::placeholder, form input.popu
 form textarea {
     height: 200px;
 }
-.formButton {
+form button {
     transition: all 0.2s ease-in-out;
     font: 18px Helvetica, Arial, sans-serif;
     border: none;
@@ -74,9 +68,8 @@ form textarea {
     width: 100%;
     text-transform: uppercase;
     letter-spacing: 5px;
-    z-index: 101;
 }
-.formButton:hover {
+form button:hover {
     background: #0e82d4;
     cursor: pointer;
 }
@@ -124,4 +117,7 @@ form textarea {
 .mt5 {
     margin-top: 5px;
 }
-
+.chat{
+    width:40vw;
+    height:200px;
+}
