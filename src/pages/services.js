@@ -9,18 +9,20 @@ import Contact from '../components/contact'
 class ServicesIndex extends React.Component {
     render() {
         const domain = this.props?.data?.nodeDomain
-        const servicesOriginal = domain.relationships
-        
-        let services = servicesOriginal.node__domain_services.map(function(service){
-                        return{
-                "title": service.title,
-                "body": service.body.processed,
-                "images": service.relationships.field_ds_images,
-                "menu-label": service.menulabel,
-                "url": service.path.alias,
-                "id": service.drupal_id
-            }
-        })
+        const servicesOriginal = domain.relationships.node__domain_services
+        let services = {}
+        if (servicesOriginal != null){
+          services = servicesOriginal.map(function(service){
+                            return{
+                    "title": service.title,
+                    "body": service.body.processed,
+                    "images": service.relationships.field_ds_images,
+                    "menu-label": service.menulabel,
+                    "url": service.path.alias,
+                    "id": service.drupal_id
+                }
+            })
+      }
         
         return (
             <> 
