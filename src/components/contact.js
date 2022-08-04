@@ -20,6 +20,7 @@ const Contact = () => {
     const name = e.target.name.value
     const email_address = e.target.email.value
     const message = e.target.message.value
+    const funk = e.target.funk.value
     setButtonText('Sending it...')
     await fetch(url, {
       method:'POST',
@@ -27,14 +28,15 @@ const Contact = () => {
         'webform_id':webform_id,
         "name_":name,
         "email_address": email_address,
-        "message": message
+        "message": message,
+        "funk": funk
       }),
     }).then((res) => {
-      console.log(res.body)
       setButtonText('Thank you')
       e.target.name.value = ""
       e.target.email.value = ""
       e.target.message.value = ""
+      e.target.funk.value= ""
     })
     .catch((error) => {
     setButtonText('Something wrong happened :(')
@@ -47,7 +49,7 @@ const Contact = () => {
           <div className={styles.container}>
             <div className={styles.sectionTitle}>
               <h1>
-                Contact
+                contact me
               </h1>
             </div>
             <div className={styles.mt5}>
@@ -62,12 +64,15 @@ const Contact = () => {
                   <textarea placeholder='Message' id='message' name='message' onChange={handleChange} />
                 </div>
                 <div className={styles.colmd5}>
-                  <input type="submit" value={buttonText}/>
+                  <input type="submit"className={styles.formButton} value={buttonText}/>
+                </div>
+                <div className={styles.hp}>
+                  <input type="text" placeholder="Phone Number" name='funk' onChange={handleChange} />
                 </div>
                 
               </form>
             </div>
-            <div className={styles.chat}>
+            <div>
             <LazyLoadMessenger
               pageId={process.env.META_PAGE_ID}
               appId={process.env.META_MESSENGER_TOKEN}
