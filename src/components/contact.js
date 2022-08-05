@@ -47,9 +47,9 @@ const Contact = () => {
           <div className={styles.container}>
             <div className={styles.sectionTitle}>
               <h1>
-                Contact
+                contact form
               </h1>
-            </div>
+            </div>  
             <div className={styles.mt5}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.colmd5}>
@@ -62,7 +62,7 @@ const Contact = () => {
                   <textarea placeholder='Message' id='message' name='message' onChange={handleChange} />
                 </div>
                 <div className={styles.colmd5}>
-                  <input type="submit" value={buttonText}/>
+                  <input type="submit" value={buttonText} className={styles.formButton}/>
                 </div>
                 
               </form>

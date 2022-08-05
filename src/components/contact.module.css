@@ -2,30 +2,27 @@
 
 section {
     min-width: 280px;
-    max-width: 100%;
+    max-width: 600px;
     padding: 1rem 2rem 5rem;
-    background-color: #fbfbfb;
+    background-color: #4e4e4e;
     border-radius: 8px;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
     margin: 50px auto;
-    color: #384d4a;
-    font-family: 'Nunito', sans-serif;
+    color: white;
     font-size: 0.8rem;
 }
 
 .container {
     margin: 0 2rem;
-    text-align: left; 
+    text-align: center; 
 }
 
 h1 .sectionTitle {
     display: table;
     margin: 40px auto;
-    color:slategrey;
-    font: 30px Helvetica;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    color:white;
     letter-spacing: 10px;
+    text-align: center;
 }
 form {
     display: table;
@@ -36,16 +33,17 @@ form input, form textarea {
     box-sizing: border-box;
     display: block;
     border: none;
-    padding: 20px;
+    padding: 15px;
     max-width: 400px;
-    margin-bottom: 20px;
+    min-width: 280px;
+    margin-bottom: 15px;
     font-size: 18px;
     outline: none;
     transition: all 0.2s ease-in-out;
 }
 form input::placeholder, form textarea::placeholder {
     transition: all 0.2s ease-in-out;
-    color: #999;
+    color: rgb(26, 26, 26);
     font: 18px Helvetica, Arial, sans-serif;
 }
 form input:focus, form textarea:focus, form input.populated, form textarea.populated {
@@ -58,7 +56,7 @@ form input:focus::placeholder, form textarea:focus::placeholder, form input.popu
 form textarea {
     height: 200px;
 }
-form button {
+.formButton {
     transition: all 0.2s ease-in-out;
     font: 18px Helvetica, Arial, sans-serif;
     border: none;
@@ -69,7 +67,7 @@ form button {
     text-transform: uppercase;
     letter-spacing: 5px;
 }
-form button:hover {
+.formButton:hover {
     background: #0e82d4;
     cursor: pointer;
 }
@@ -119,5 +117,5 @@ form button:hover {
 }
 .chat{
     width:40vw;
-    height:200px;
+
 }
