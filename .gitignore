@@ -1,7 +1,7 @@
 node_modules/
 .cache/*
 .cache
-.cahe/
+.cache/
 .env.*
 node_modules.*
 public/
