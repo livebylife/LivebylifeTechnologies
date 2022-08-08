@@ -31,7 +31,8 @@ class RootIndex extends React.Component{
         <Layout location={this.props.location} siteTitle={siteName} navLogo={siteNavLogo} >
         <ParallaxDivider imageUrl={parallaxImages.relationships.field_parallax_image[0].uri.url}/>
         {/* <ArticlePreview posts={posts}/> */}
-        <AboutPreview aboutContent={siteData.relationships.node__domain_about[0].body.processed}/>  
+        <AboutPreview aboutContent={siteData.relationships.node__domain_about[0].body.processed}/>
+        <ParallaxDivider imageUrl={parallaxImages.relationships.field_parallax_image[2].uri.url}/>  
         <ServicePreview services={services} />
         <ParallaxDivider imageUrl={parallaxImages.relationships.field_parallax_image[1].uri.url}/>
         <ContactForm location={this.props.location}/>
