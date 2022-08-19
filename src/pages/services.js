@@ -14,7 +14,7 @@ class ServicesIndex extends React.Component {
         let services = servicesOriginal.node__domain_services.map(function(service){
                         return{
                 "title": service.title,
-                "body": service.body.processed,
+                "body": service.body.value,
                 "images": service.relationships.field_ds_images,
                 "menu-label": service.menulabel,
                 "url": service.path.alias,
@@ -75,7 +75,7 @@ export const pageQuery = graphql`query DomainServices {
         title
         drupal_id
         body {
-          processed
+          value
         }
         relationships {
           field_ds_images {

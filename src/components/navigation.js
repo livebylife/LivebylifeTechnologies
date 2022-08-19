@@ -4,6 +4,8 @@ import Particles from 'react-tsparticles'
 import {loadFull } from "tsparticles"
 import tspOptions from './tsparticle_options'
 
+// TODO: Lazy load particles using React.lazy() and Suspense
+
 import * as styles from './navigation.module.css'
 
 class Navigation extends React.Component {

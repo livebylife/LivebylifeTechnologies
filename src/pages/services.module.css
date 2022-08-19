@@ -2,8 +2,12 @@
     
 }
 
-.services{
-    /* background-color: white; */
+/* .service *{
+    all:unset
+} */
+.service img {
+    min-width: 60px;
+    max-width: 120px;
 }
 
 .servicesHeroContainer {

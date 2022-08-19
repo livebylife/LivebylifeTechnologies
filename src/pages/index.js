@@ -5,11 +5,12 @@ import Layout from '../components/layout'
 import Hero from '../components/hero'
 import ServicePreview from '../components/services-preview'
 import ParallaxDivider from '../components/parallax-divider'
+
 import { Helmet } from "react-helmet"
 import Topbanner from '../components/Topbanner'
 import ContactForm from '../components/contact'
 import AboutPreview from '../components/about-preview'
-import ArticlePreview from '../components/article-preview'
+// import BackgroundImage from '../components/background-image'
 
 class RootIndex extends React.Component{
   render(){
@@ -35,6 +36,7 @@ class RootIndex extends React.Component{
         <ServicePreview services={services} />
         <ParallaxDivider imageUrl={parallaxImages.relationships.field_parallax_image[1].uri.url}/>
         <ContactForm location={this.props.location}/>
+        {/* <BackgroundImage/> */}
         </Layout>
       </>
     )

@@ -2,6 +2,7 @@ import React from 'react'
 import {css} from '@emotion/react'
 
 
+
 export default function ParallaxDivider(imageUrl){
     
     return(
