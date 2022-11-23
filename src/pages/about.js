@@ -14,6 +14,8 @@ class AboutIndex extends React.Component {
         const domain = this.props?.data?.nodeDomain
         const aboutData = domain.relationships.node__domain_about[0]
         const parallaxImages = this.props?.data?.allNodeParallaxDivider.edges[0].node
+        console.log("about index:")
+        console.log(parallaxImages)
         
         return(
             <>
@@ -26,7 +28,7 @@ class AboutIndex extends React.Component {
                         <div className={styles.body} dangerouslySetInnerHTML={{__html: aboutData.body.processed}}></div>
                       </div>
                     </Container>
-                    <ParallaxDivider imageUrl={parallaxImages.relationships.field_parallax_image[2].uri.url}/>
+                    <ParallaxDivider imageUrl={'https://api.livebylife.com/' + parallaxImages.relationships.field_parallax_image[2].uri.url}/>
                     <Container>
                       <Contact/>
                     </Container>  
@@ -38,40 +40,40 @@ class AboutIndex extends React.Component {
 export default AboutIndex
 
 export const pageQuery = graphql`query DomainAbout {
-    nodeDomain {
-      title
-      body {
-        processed
-      }
-      field_domain_slogan
-      relationships {
-        field_domain_logo {
-          uri {
-            url
-          }
+  nodeDomain(drupal_internal__nid: {eq: 7}) {
+    title
+    body {
+      processed
+    }
+    field_domain_slogan
+    relationships {
+      field_domain_logo {
+        uri {
+          url
         }
-        node__domain_about {
-          title
-          body {
-            processed
-          }
+      }
+      node__domain_about {
+        title
+        body {
+          processed
         }
       }
     }
-    allNodeParallaxDivider(
-      filter: {field_dsmatch: {drupal_internal__target_id: {eq: 7}}, title: {eq: "Index"}}
-    ) {
-      edges {
-        node {
-          title
-          relationships {
-            field_parallax_image {
-              uri{
-                url
-              }
+  }
+  allNodeParallaxDivider(
+    filter: {field_dsmatch: {drupal_internal__target_id: {eq: 7}}, title: {eq: "Index"}}
+  ) {
+    edges {
+      node {
+        title
+        relationships {
+          field_parallax_image {
+            uri {
+              url
             }
           }
         }
       }
     }
+  }
   }`

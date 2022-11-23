@@ -1,0 +1,48 @@
+.container{
+    background-color: rgb(98,98,98);
+    width: 100vw;
+}
+.outer{
+    width:100%;
+    background-color: rgb(98,98,98);
+    position: relative;
+    top:-40px;
+}
+.section1 {
+    width: 80vw;
+    background-color: rgb(98,98,98);
+    color:white;
+    
+    height:109vh;
+}
+.left{
+    width: 60vw;
+    position:relative;
+    top:0;
+    padding-left: 10vw;
+    padding-top: 20vh;
+}
+.right{
+    width: 40vw;
+    position:relative;
+    top:-77vh;
+    float:right;
+    right:-18vw;
+    
+}
+
+.left h1 {
+    font-size:5vw;
+    font-weight: 900;
+}
+.left p {
+    font-size: 1.5vw;
+}
+.left input{
+    background-color: #3f82b7;
+    color: white;
+}
+.left input:hover{
+    background-color: #3002b7;
+}
+

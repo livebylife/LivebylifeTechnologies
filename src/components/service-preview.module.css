@@ -1,0 +1,20 @@
+.service {
+    background-color: white;
+    border-radius:3px;
+    padding: 10px;
+}
+
+.sBody{
+    border-color: blueviolet;
+    border-radius:3px;
+    border-width:5px;
+}
+
+.serviceSlug{
+    font-family: var(--font-monospace);
+    font-weight: bold;
+    font-size: var(--text-title);
+}
+.serviceDescription{
+    color:slategrey;
+}

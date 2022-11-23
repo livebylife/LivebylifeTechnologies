@@ -1,19 +1,23 @@
 .services {
-  padding-left:10vh;
-  padding-bottom: 20px;
+  padding-left:10vw;
+  padding-bottom: 2em;
   align-items: center;
-  
+  background-color: #1D1B1E;
+  margin-bottom:40px;
 }
 .titleWrap{
   padding-left:5vh !important;
+  background-color: #1D1B1E;
 }
-.servicesTitle h1{
+.servicesTitle {
   display: inline-block;
-  font-size: var(--text-lg);
+  font-size: var(--text-4xl);
+  font-family: var(--font-monospace);
   margin-bottom: var(--space-xs);
   margin-top: var(--space-lg);
+  padding:0.5em;
   border-bottom: 1.5px solid transparent;
-  
+  color:white;
 }
 .service-list {
     margin: 0;
@@ -27,11 +31,26 @@
   .title {
     display: inline-block;
     font-size: var(--text-lg);
+    font-family: var(--font-monospace);
     margin-bottom: var(--space-xs);
     margin-top: var(--space-lg);
+    margin-left:5px;
+    padding-bottom:.5em;
     border-bottom: 1.5px solid transparent;
   }
+
+  .item{
+    background-color: white;
+    padding:5px;
+    border-radius: 3px;
+    width: 280px;
+  }
   
+  .sBody{
+    font-family: var(--font-monospace);
+    
+  }
+
   .link {
     text-decoration: none;
   }
@@ -40,6 +59,19 @@
     border-bottom-color: var(--primary);
   }
 
+  .serviceImage{
+    max-width: 270px;
+    max-height: 180px;
+  }
   .services_slug {
     max-width: 340px;
+    font-family: var(--font-monospace);
+    font-weight: var(--body);
+    font-size: var(--text-md);
+    color:dimgray;
+    margin-left:20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 80px;
+    white-space: nowrap;
   }

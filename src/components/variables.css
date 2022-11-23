@@ -1,12 +1,12 @@
 :root {
   /* primitives */
   /* font-family */
-  --font-sans: "Roboto", -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  --font-sans: "Montserrat", -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
-  --font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+  --font-monospace: "Roboto", Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
-  --font-serif: 'Times New Roman', Times, serif;
+  --font-serif: serif;
 
   /* palette */
   --white: #fff;
@@ -31,7 +31,7 @@
   --loose: 1.75;
 
   /* font-weight */
-  --body: 400;
+  --body: 200;
   --medium: 500;
   --semibold: 600;
   --bold: 700;

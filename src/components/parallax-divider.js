@@ -1,20 +1,28 @@
 import React from 'react'
 import {css} from '@emotion/react'
+import * as styles from './parallax-divider.module.css'
 
 
 
-export default function ParallaxDivider(imageUrl){
-    
+const ParallaxDivider = ({imageUrl, header}) =>{
     return(
-        <div css={css`
-             background-image: url(${process.env.GATSBY_API_URL + imageUrl.imageUrl});
-             height: 40vh;
+        <div className={styles.parallaxDivider} css={css`
+             background-image: url(${imageUrl});
+             height: 65vh;
              background-attachment:fixed;
              background-position:center;
              background-repeat: no-repeat;
              background-size:cover;
         `}>
-            
+            {/* <div
+                dangerouslySetInnerHTML={{__html:header,}} 
+                className={styles.parallaxHeader}
+                /> */}
+
+            <div className={styles.parallaxHeader}>
+                <h1>{header}</h1>
+            </div>
         </div>
     )
 }
+export default ParallaxDivider

@@ -44,10 +44,9 @@ const Contact = () => {
   return (
       <>
         <section id="contact">
-          <div className={styles.container}>
             <div className={styles.sectionTitle}>
               <h1>
-                contact form
+                contact us
               </h1>
             </div>  
             <div className={styles.mt5}>
@@ -68,13 +67,12 @@ const Contact = () => {
               </form>
             </div>
             <div className={styles.chat}>
-            <LazyLoadMessenger
+            {/* <LazyLoadMessenger
               pageId={process.env.META_PAGE_ID}
               appId={process.env.META_MESSENGER_TOKEN}
               htmlRef={this?.props?.location.pathname}
-            />
+            /> */}
             </div>
-          </div>
         </section>
     </>
   )

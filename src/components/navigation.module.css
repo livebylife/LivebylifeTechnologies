@@ -32,6 +32,7 @@
   text-decoration-style: solid;
   text-decoration-thickness: auto;
   text-size-adjust: 100%;
+  font-family: var(--font-sans);
 }
 
 .navigationItem a {
@@ -51,6 +52,7 @@
   align-items: center;
   flex-direction: row;
   flex-shrink: 0;
+  font-family: var(--font-sans);
   gap: var(--space-md);
 }
 

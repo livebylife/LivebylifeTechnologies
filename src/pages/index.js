@@ -10,31 +10,46 @@ import { Helmet } from "react-helmet"
 import Topbanner from '../components/Topbanner'
 import ContactForm from '../components/contact'
 import AboutPreview from '../components/about-preview'
+import LandingPage from '../components/landing-page'
+import "../components/assets/dxpr_builder.css"
 // import BackgroundImage from '../components/background-image'
 
 class RootIndex extends React.Component{
   render(){
     
-    const siteData = this.props?.data?.allNodeDomain.edges[0].node
-    
+    const siteData = this.props?.data?.allNodeDomain.edges[1].node
+    // console.log(siteData)
+    console.log("fun")
     const siteNavLogo = siteData.relationships.field_domain_logo[1].uri.url
     const siteName = siteData.title
     const siteSlogan = siteData.field_domain_slogan
-    const siteLogoURL = siteData.relationships.field_domain_logo[0].localFile.childImageSharp
+    const heroMessage = siteData.body.processed
+    const siteLogoURL = siteData.relationships.field_domain_about_images[0].localFile.childImageSharp
     const services = siteData.relationships.node__domain_services
-    const parallaxImages = this.props?.data?.allNodeParallaxDivider.edges[0].node
-    
+    const featureService = this.props?.data?.nodeDomainServices
+    const parallaxImages = this.props?.data?.allNodeDomain.edges[1].node.relationships.node__parallax_divider
+     
     return(
       <>
-        <Helmet title={siteName} defer={false}/>
-        <Topbanner/>
-        <Hero imageUrl={siteLogoURL} title={siteName} content={siteSlogan} />
+        <Helmet>
+          <meta charSet='utf-8'/>
+          <title>{siteName}</title>
+        </Helmet>
+        {/* <Topbanner/> */}
+        
         <Layout location={this.props.location} siteTitle={siteName} navLogo={siteNavLogo} >
-        <ParallaxDivider imageUrl={parallaxImages.relationships.field_parallax_image[0].uri.url}/>
+        <Hero imageUrl={siteLogoURL} title={siteName} content={heroMessage} />
+        <ServicePreview service={featureService}/>
+        
+        <ParallaxDivider 
+          imageUrl={parallaxImages[1].relationships.field_parallax_image[0].localFile.url} 
+          header='Who is Live by Life Technologies'
+        />
+        
         {/* <ArticlePreview posts={posts}/> */}
         <AboutPreview aboutContent={siteData.relationships.node__domain_about[0].body.processed}/>  
         <ServicePreview services={services} />
-        <ParallaxDivider imageUrl={parallaxImages.relationships.field_parallax_image[1].uri.url}/>
+        <ParallaxDivider imageUrl={parallaxImages[1].relationships.field_parallax_image[1].localFile.url}/>
         <ContactForm location={this.props.location}/>
         {/* <BackgroundImage/> */}
         </Layout>
@@ -103,6 +118,25 @@ query DomainData {
               processed
             }
           }
+          node__parallax_divider{
+            relationships{
+              field_parallax_image {
+                internal{
+                  content
+                }
+                localFile {
+                  url
+                }
+              }
+            }
+          }
+          field_domain_about_images {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(height:400)
+              }
+            }
+          }
         }
       }
     }
@@ -168,6 +202,22 @@ query DomainData {
               url
             }
           }
+        }
+      }
+    }
+  }
+  nodeDomainServices(drupal_internal__nid: {eq: 27}) {
+    title
+    body {
+      value
+    }
+    field_domain_service_slug {
+      value
+    }
+    relationships {
+      field_ds_images {
+        uri {
+          url
         }
       }
     }

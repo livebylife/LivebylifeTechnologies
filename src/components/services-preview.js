@@ -10,17 +10,20 @@ const ServicePreview = ({services}) => {
     return (
         <Container>
             <div className={styles.titleWrap}>
-                <h1 className='servicesTitle'>What can I do for you</h1>
+                <h1 className={styles.servicesTitle}>What we do for you</h1>
             </div>
             <div className={styles.services}>
                 <ul className={styles.serviceList}>
                     {services.map((service) => {
                         return (
-                            <li key={service.path.alias}>
+                            <li className={styles.item} key={service.path.alias}>
                                 <Link to={`/services#${service.path.alias}`} className={styles.link}>
                                     <GatsbyImage 
                                         image={service.relationships.field_ds_images[0].localFile.childImageSharp.gatsbyImageData} 
                                         alt=""
+                                        width="270px"
+                                        height="180px"
+                                        className={styles.serviceImage}
                                     />
                                     <br/>
                                     <h2 className={styles.title}>{service.title}</h2>

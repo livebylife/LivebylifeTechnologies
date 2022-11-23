@@ -1,0 +1,17 @@
+.parallaxDivider{
+    width: 100vw;
+    position: relative;
+    top:-40px;
+
+}
+
+.parallaxHeader h1{
+    color:#C2A66E;
+    font-size:4rem;
+    padding-top:20px;
+    margin-left:10%;
+    position: relative;
+    top: 120px;
+    width: 40vw;
+    font-family: 'Montserrat', sans-serif;;
+}

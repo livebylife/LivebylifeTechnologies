@@ -5,24 +5,28 @@ import Container from '../components/container'
 import ParallaxDivider from '../components/parallax-divider'
 import { Helmet } from 'react-helmet'
 import ContactForm from '../components/contact'
+import * as styles from './contact.module.css'
 
 class ContactIndex extends React.Component{
     render(){
-        const siteData = this.props?.data?.allNodeDomain.edges[0].node
-        const siteNavLogo = this.props?.data?.allNodeDomain.edges[0].node.relationships.field_domain_logo[1].uri.url
+        const siteData = this.props?.data?.allNodeDomain.edges[1].node
+        
+        const siteNavLogo = siteData.relationships.field_domain_logo[1].uri.url
+        
         const siteName = siteData.title
         
         const parallaxImages = this.props.data.allNodeParallaxDivider.edges[0].node.relationships.field_parallax_image[3].uri.url
+        console.log(parallaxImages)
         return(
-            <>
-                <Helmet title={siteName} defer={false} />
-                <Layout location={this.props.location} siteTitle={siteName} navLogo={siteNavLogo}>
-                     <ParallaxDivider imageUrl={parallaxImages} />
-                    <Container>
-                        <ContactForm/>
-                    </Container>
-                </Layout>
-            </>
+          <>
+            <Helmet title={siteName} defer={false} />
+            <Layout location={this.props.location} siteTitle={siteName} navLogo={siteNavLogo}>
+                  <ParallaxDivider imageUrl={'https://api.livebylife.com/'+ parallaxImages} header='Contact Live by Life Technologies' />
+                <div className={styles.contactContent}>                    
+                  <ContactForm/>
+                </div>
+            </Layout>
+          </>
         )
     }
 }

@@ -29,13 +29,13 @@ module.exports = {
                 https: true
               }
             }, 
-            "gatsby-plugin-emotion", "gatsby-transformer-sharp",
+            "gatsby-plugin-emotion", 
             {
                 resolve: 'gatsby-plugin-manifest',
                 options: {
                   "icon": "src/images/icon.png"
                 }
-              }, "gatsby-plugin-sharp", {
+              }, "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
                 resolve: 'gatsby-source-filesystem',
                 options: {
                   "name": "images",

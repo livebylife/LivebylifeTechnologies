@@ -1,5 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,700&display=swap');
 .aboutContent{
-    width: 95vw;
-    padding-left: 2.5vw;
-    padding-right: 2.5vw;
+    width: 80vw;
+    margin-left: 10%;
+    padding: 2.5vw;
+    background-color: white;
+    position: relative;
+    top: -220px;
+    margin-bottom:-220px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 35px;
+}
+.container{
+    height: 100px;
+    
 }

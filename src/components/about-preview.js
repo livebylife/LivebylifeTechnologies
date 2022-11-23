@@ -4,14 +4,14 @@ import Container from './container'
 
 const aboutPreview = ({aboutContent}) =>{ 
     return(
-        <Container>
+        
             <div className={styles.aboutContent}>
                 <div
                 dangerouslySetInnerHTML={{__html:aboutContent,}} 
-                className={styles.aboutContent}
+                className={styles.aboutContentInner}
                 />
             </div>
-        </Container>
+        
     )
 }
 

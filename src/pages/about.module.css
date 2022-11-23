@@ -10,11 +10,19 @@
 }
 
 .about{
+    font-family: "Montserrat", sans-serif;
+    line-height: 2.3em;
     display: block;
     width: 60vw;
     margin-top:40px;
     margin-left: 15vw;
     margin-right: 15vw;
+}
+.aboutContent{
+    padding:1em;
+}
+.about p{
+    padding:1em;
 }
 
 @media (max-width:768px){
