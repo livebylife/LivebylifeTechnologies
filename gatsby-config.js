@@ -35,14 +35,7 @@ module.exports = {
                 options: {
                   "icon": "src/images/icon.png"
                 }
-              }, "gatsby-plugin-sharp", {
-                resolve: 'gatsby-source-filesystem',
-                options: {
-                  "name": "images",
-                  "path": "./src/images/"
-                },
-                __key: "images"
-              },
+              }, "gatsby-plugin-sharp",
               {
                 resolve:'gatsby-source-drupal',
                 options:{
