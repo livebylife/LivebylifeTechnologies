@@ -12,6 +12,8 @@ import ContactForm from '../components/contact'
 import AboutPreview from '../components/about-preview'
 import LandingPage from '../components/landing-page'
 import "../components/assets/dxpr_builder.css"
+import HeroPreviewSlider from '../components/blog-preview'
+import BlogPreview from '../components/blog-preview'
 // import BackgroundImage from '../components/background-image'
 
 class RootIndex extends React.Component{
@@ -45,7 +47,7 @@ class RootIndex extends React.Component{
           imageUrl={parallaxImages[1].relationships.field_parallax_image[0].localFile.url} 
           header='Who is Live by Life Technologies'
         />
-        
+       
         {/* <ArticlePreview posts={posts}/> */}
         <AboutPreview aboutContent={siteData.relationships.node__domain_about[0].body.processed}/>  
         <ServicePreview services={services} />
@@ -53,6 +55,7 @@ class RootIndex extends React.Component{
         <ContactForm location={this.props.location}/>
         {/* <BackgroundImage/> */}
         </Layout>
+        <BlogPreview/>
       </>
     )
   }

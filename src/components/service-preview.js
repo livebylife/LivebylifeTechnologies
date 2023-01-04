@@ -8,7 +8,7 @@ const ServicePreview = ({service}) => {
     const sSlug = ""
     const sDescription = ""
     const sImage = ""
-    console.log(service)
+    //console.log(service)
     return (
         <div className={styles.service}>
             <ParallaxDivider imageUrl={pImage} header={sTitle}/>
