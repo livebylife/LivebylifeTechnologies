@@ -21,7 +21,7 @@ class RootIndex extends React.Component{
     
     const siteData = this.props?.data?.allNodeDomain.edges[1].node
     // console.log(siteData)
-    console.log("fun")
+    
     const siteNavLogo = siteData.relationships.field_domain_logo[1].uri.url
     const siteName = siteData.title
     const siteSlogan = siteData.field_domain_slogan
@@ -30,7 +30,9 @@ class RootIndex extends React.Component{
     const services = siteData.relationships.node__domain_services
     const featureService = this.props?.data?.nodeDomainServices
     const parallaxImages = this.props?.data?.allNodeDomain.edges[1].node.relationships.node__parallax_divider
-     
+    const books = this.props?.data?.allNodeBook.nodes
+    
+
     return(
       <>
         <Helmet>
@@ -40,7 +42,10 @@ class RootIndex extends React.Component{
         {/* <Topbanner/> */}
         
         <Layout location={this.props.location} siteTitle={siteName} navLogo={siteNavLogo} >
+        
+        
         <Hero imageUrl={siteLogoURL} title={siteName} content={heroMessage} />
+        <BlogPreview Books={books}/>
         <ServicePreview service={featureService}/>
         
         <ParallaxDivider 
@@ -225,7 +230,46 @@ query DomainData {
       }
     }
   }
+  allNodeBook(filter: {status: {eq: true}}) {
+    nodes {
+      drupal_internal__book {
+        bid
+        nid
+        pid
+        depth
+        p1
+        p2
+        p3
+        p4
+        p5
+        p6
+        p7
+        p8
+        p9
+      }
+      drupal_internal__nid
+      title
+      body {
+        value
+      }
+      relationships {
+        field_book_image_s_ {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        field_feature_ {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+  }
 }
 `
-
 
