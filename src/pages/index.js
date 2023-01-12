@@ -253,10 +253,10 @@ query DomainData {
         field_feature_ {
           localFile {
             childImageSharp {
-              resize(width: 270) {
+              resize(width: 450) {
                 src
               }
-              gatsbyImageData(width: 270)
+              gatsbyImageData(width: 450)
             }
           }
         }

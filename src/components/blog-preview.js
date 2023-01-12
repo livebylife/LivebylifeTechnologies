@@ -52,48 +52,46 @@ function changeFirstLetterCase(str) {
   return str.toLowerCase().split(' ').map((word) => word[0].toUpperCase() + word.slice(1)).join('_');
 }
 const BlogPreview = (Books) => {
-  const data = Books.Books
-  var len = ""
   var books = []
-  if(Array.isArray(data)){
-    len = data.length
-    books = data
-    
+  if(Books){
+    books = Books.Books
+    if(Array.isArray(books)){
+      return (
+        <Container>
+          <div className={styles.titleWrap}>
+            <h1 className={styles.articlesTitle}>What we're writing about</h1>
+          </div>
+          <div className={styles.articles}>
+            <ul className={styles.article_list}>
+              {books.map((book) => {
+                let bookImage = {}
+                if(book.relationships.field_feature_){
+                  bookImage = book.relationships.field_feature_.localFile.childImageSharp.gatsbyImageData
+                  return (
+                    <li className={styles.item} key={book.drupal_internal__nid}>
+                        <Link to={`/articles#${book.drupal_internal__nid}`}>
+                          <GatsbyImage image={bookImage} width="336px" className={styles.articleImage} alt=""/>
+                          <br/>
+                          <div className={styles.article_title_wrap}>
+                            <h2 className={styles.title}>{book.title}</h2>
+                          </div>
+                          
+                          <div className={styles.articleSlug}>
+                            {book.field_bpage_description}
+                          </div>
+                        
+                        </Link>
+                        
+                    </li>
+                  )
+                }
+              })}
+            </ul>
+          </div>
+        </Container>
+      )
+    }
   }
-  
-  
-  
-  return (
-    <Container>
-      <div className={styles.titleWrap}>
-        <h1 className={styles.bookTitle}>What we're writing about</h1>
-      </div>
-      <div className={styles.books}>
-        <ul className={styles.bookList}>
-          {books.map((book) => {
-            let bookImage = {}
-            if(book.relationships.field_feature_ != null){
-              bookImage = book.relationships.field_feature_.localFile.childImageSharp.GatsbyImage
-
-            console.log(bookImage)
-            }
-            
-            return (
-              <li className={styles.item} key={book.drupal_internal__nid}>
-                
-                   <Link to={`/articles#${book.drupal_internal__nid}`}>
-                    {/* <GatsbyImage image={bookImage} width="270px" height="180px" className={styles.bookImage} alt=""/> */}
-                    <Img fixed={bookImage} alt={book.title}/>
-                    <br/>
-                    <h2 className={styles.ArticleTitle}>{book.title}</h2>
-                   </Link>
-                   <div className={styles.articleSlug} dangerouslySetInnerHTML={{__html:book.field_bpage_description}}/>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </Container>
-  )
+  return null  
 }
 export default BlogPreview
