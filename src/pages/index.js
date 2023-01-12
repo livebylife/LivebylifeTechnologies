@@ -230,7 +230,7 @@ query DomainData {
       }
     }
   }
-  allNodeBook(filter: {status: {eq: true}}) {
+  allNodeBook(filter: {status: {eq: true}}, sort: {changed: DESC}) {
     nodes {
       drupal_internal__book {
         bid
@@ -249,25 +249,21 @@ query DomainData {
       }
       drupal_internal__nid
       title
-      body {
-        value
-      }
       relationships {
-        field_book_image_s_ {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
         field_feature_ {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              resize(width: 270) {
+                src
+              }
+              gatsbyImageData(width: 270)
             }
           }
         }
       }
+      changed
+      created
+      field_bpage_description
     }
   }
 }

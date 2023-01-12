@@ -1,4 +1,5 @@
 import { GatsbyImage } from 'gatsby-plugin-image';
+import Img from 'gatsby-image'
 import React, { Component} from 'react';
 import {Link} from 'gatsby';
 import * as styles from './blog-preview.module.css'
@@ -56,8 +57,8 @@ const BlogPreview = (Books) => {
   var books = []
   if(Array.isArray(data)){
     len = data.length
-    books = extractBooks(data)
-    extractPages(data, books)
+    books = data
+    
   }
   
   
@@ -70,16 +71,23 @@ const BlogPreview = (Books) => {
       <div className={styles.books}>
         <ul className={styles.bookList}>
           {books.map((book) => {
-            console.log(book)
+            let bookImage = {}
+            if(book.relationships.field_feature_ != null){
+              bookImage = book.relationships.field_feature_.localFile.childImageSharp.GatsbyImage
+
+            console.log(bookImage)
+            }
+            
             return (
-              <li className={styles.item} key={book.id}>
+              <li className={styles.item} key={book.drupal_internal__nid}>
                 
-                   <Link to={`/articles#${book.url}`}>
-                    {/* <GatsbyImage image={book.fImage.localFile.childImageSharp.gatsbyImageData} width="270px" height="180px" className={styles.bookImage}/> */}
+                   <Link to={`/articles#${book.drupal_internal__nid}`}>
+                    {/* <GatsbyImage image={bookImage} width="270px" height="180px" className={styles.bookImage} alt=""/> */}
+                    <Img fixed={bookImage} alt={book.title}/>
                     <br/>
                     <h2 className={styles.ArticleTitle}>{book.title}</h2>
                    </Link>
-                   <div className={styles.articleSlug} dangerouslySetInnerHTML={{__html:book.body.value}}/>
+                   <div className={styles.articleSlug} dangerouslySetInnerHTML={{__html:book.field_bpage_description}}/>
               </li>
             )
           })}
