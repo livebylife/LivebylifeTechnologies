@@ -12,6 +12,7 @@
   
   .article {
     display: grid;
+    font-family:var(--font-sans);
     font-size: var(--text-prose);
     gap: var(--space-xl);
     letter-spacing: var(--text-prose-tracking);
@@ -20,9 +21,34 @@
   }
   
   .body {
-    max-width: 48rem;
+    max-width: 70rem;
+  }
+
+  .body ol {
+    margin-left:2em;
+    max-width: 60rem;
   }
   
+  .embededImage {
+    max-width: 400px;
+    
+  }
+
+  .navLinks{
+    max-width: 90rem;
+    background-color: floralwhite;
+    border:3px;
+    margin-left:-5%;
+  }
+
+  .navLinksLeft{
+    max-width: 50%;
+    float: left;
+  }
+  .navLinksRight{
+    max-width: 50%;
+    float:right;
+  }
   .article h2:first-of-type {
     margin-top: 0;
   }
@@ -68,6 +94,10 @@
     justify-content: space-between;
     list-style: none;
     padding: 0;
+  }
+  .featureImage{
+    border-bottom-left-radius: 25%;
+    border-top-right-radius: 25%;
   }
   
   @media (min-width: 768px) {

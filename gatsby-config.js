@@ -42,6 +42,7 @@ module.exports = {
                   baseUrl: process.env.GATSBY_API_URL,
                   apiBase: process.env.GATSBY_API_BASE,
                   imageCDN: false,
+                  skipFileDownloads: false,
                   basicAuth: {
                     username:process.env.API_USERNAME,
                     password: process.env.API_PASSWORD

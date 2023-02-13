@@ -12,14 +12,16 @@ import ContactForm from '../components/contact'
 import AboutPreview from '../components/about-preview'
 import LandingPage from '../components/landing-page'
 import "../components/assets/dxpr_builder.css"
+import HeroPreviewSlider from '../components/blog-preview'
+import BlogPreview from '../components/blog-preview'
 // import BackgroundImage from '../components/background-image'
 
 class RootIndex extends React.Component{
   render(){
     
     const siteData = this.props?.data?.allNodeDomain.edges[1].node
-    // console.log(siteData)
-    console.log("fun")
+   
+    
     const siteNavLogo = siteData.relationships.field_domain_logo[1].uri.url
     const siteName = siteData.title
     const siteSlogan = siteData.field_domain_slogan
@@ -28,7 +30,9 @@ class RootIndex extends React.Component{
     const services = siteData.relationships.node__domain_services
     const featureService = this.props?.data?.nodeDomainServices
     const parallaxImages = this.props?.data?.allNodeDomain.edges[1].node.relationships.node__parallax_divider
-     
+    const books = this.props?.data?.allNodeBook.nodes
+    
+
     return(
       <>
         <Helmet>
@@ -38,14 +42,17 @@ class RootIndex extends React.Component{
         {/* <Topbanner/> */}
         
         <Layout location={this.props.location} siteTitle={siteName} navLogo={siteNavLogo} >
+        
+        
         <Hero imageUrl={siteLogoURL} title={siteName} content={heroMessage} />
+        <BlogPreview Books={books}/>
         <ServicePreview service={featureService}/>
         
         <ParallaxDivider 
           imageUrl={parallaxImages[1].relationships.field_parallax_image[0].localFile.url} 
           header='Who is Live by Life Technologies'
         />
-        
+       
         {/* <ArticlePreview posts={posts}/> */}
         <AboutPreview aboutContent={siteData.relationships.node__domain_about[0].body.processed}/>  
         <ServicePreview services={services} />
@@ -53,6 +60,7 @@ class RootIndex extends React.Component{
         <ContactForm location={this.props.location}/>
         {/* <BackgroundImage/> */}
         </Layout>
+        <BlogPreview/>
       </>
     )
   }
@@ -73,7 +81,7 @@ query DomainData {
           node__domain_services {
             title
             status
-            path{
+            path {
               alias
             }
             drupal_id
@@ -109,19 +117,19 @@ query DomainData {
             }
             localFile {
               childImageSharp {
-                gatsbyImageData(width: 412, layout: CONSTRAINED, placeholder: TRACED_SVG)
+                gatsbyImageData(width: 412, layout: CONSTRAINED, placeholder: BLURRED)
               }
             }
-          },
-          node__domain_about{
-            body{
+          }
+          node__domain_about {
+            body {
               processed
             }
           }
-          node__parallax_divider{
-            relationships{
+          node__parallax_divider {
+            relationships {
               field_parallax_image {
-                internal{
+                internal {
                   content
                 }
                 localFile {
@@ -133,7 +141,7 @@ query DomainData {
           field_domain_about_images {
             localFile {
               childImageSharp {
-                gatsbyImageData(height:400)
+                gatsbyImageData(height: 400)
               }
             }
           }
@@ -152,11 +160,7 @@ query DomainData {
       }
     }
   }
-  allNodeArticle(
-    sort: {order: DESC, fields: created}
-    limit: 3
-    filter: {status: {eq: true}}
-  ) {
+  allNodeArticle(sort: {created: DESC}, limit: 3, filter: {status: {eq: true}}) {
     pageInfo {
       perPage
     }
@@ -198,7 +202,7 @@ query DomainData {
         title
         relationships {
           field_parallax_image {
-            uri{
+            uri {
               url
             }
           }
@@ -222,7 +226,45 @@ query DomainData {
       }
     }
   }
+  allNodeBook(filter: {status: {eq: true}}, sort: {changed: DESC}) {
+    nodes {
+      drupal_internal__book {
+        bid
+        nid
+        pid
+        depth
+        p1
+        p2
+        p3
+        p4
+        p5
+        p6
+        p7
+        p8
+        p9
+      }
+      drupal_internal__nid
+      title
+      relationships {
+        field_feature_ {
+          localFile {
+            childImageSharp {
+              resize(width: 450) {
+                src
+              }
+              gatsbyImageData(width: 450)
+            }
+          }
+        }
+      }
+      changed
+      created
+      field_bpage_description
+      path {
+        alias
+      }
+    }
+  }
 }
 `
-
 
