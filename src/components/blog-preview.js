@@ -11,6 +11,7 @@ function extractBooks(data) {
 
   // Iterate through the nodes in the data
   for (let node of data) {
+    
     // Check if the node has a drupal_internal__book property and its depth is 1
     if (node.drupal_internal__book && node.drupal_internal__book.depth == 1) {
       // If so, add the node as a book to the books array
@@ -20,7 +21,8 @@ function extractBooks(data) {
         'fImage': node.relationships.field_feature_,
         'images': node.relationships.field_book_image_s_,
         'pages': [],
-        'url': changeFirstLetterCase(node.title)
+        'url': changeFirstLetterCase(node.title),
+        'path': node.path.alias
       });
     }
   }
@@ -52,6 +54,7 @@ function changeFirstLetterCase(str) {
   return str.toLowerCase().split(' ').map((word) => word[0].toUpperCase() + word.slice(1)).join('_');
 }
 const BlogPreview = (Books) => {
+  
   var books = []
   if(Books){
     books = Books.Books
@@ -63,13 +66,15 @@ const BlogPreview = (Books) => {
           </div>
           <div className={styles.articles}>
             <ul className={styles.article_list}>
-              {books.map((book) => {
+              {books.map((book) => { 
+                
                 let bookImage = {}
                 if(book.relationships.field_feature_){
                   bookImage = book.relationships.field_feature_.localFile.childImageSharp.gatsbyImageData
+                  console.log(bookImage)
                   return (
                     <li className={styles.item} key={book.drupal_internal__nid}>
-                        <Link to={`/articles#${book.drupal_internal__nid}`}>
+                        <Link to={`${book.path.alias}`}>
                           <GatsbyImage image={bookImage} width="336px" className={styles.articleImage} alt=""/>
                           <br/>
                           <div className={styles.article_title_wrap}>

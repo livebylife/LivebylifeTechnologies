@@ -1,67 +1,97 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
-
+import {GatsbyImage} from 'gatsby-plugin-image'
 import Seo from '../components/seo'
 import Layout from '../components/layout'
-import Hero from '../components/blog-hero'
+
 import * as styles from './blog-post.module.css'
+
+function replaceSpecificImage(str, imageNum, newString) {
+  return str.replace(new RegExp(`\\[IMAGE-${imageNum}\\]`, 'g'), newString);
+}
 
 class BlogPostTemplate extends React.Component {
   render() {
+    console.log(this.props.pageContext)
     const siteNavLogo = get(this, 'props.data.nodeDomain.relationships.field_domain_logo[1].uri.url')
     const siteName = get(this, 'props.data.nodeDomain.title')
-    const post = get(this.props, 'data.nodeArticle')
-    const dataPrevious = get(this.props, 'data.previous')
-    const dataNext = get(this.props, 'data.next')
-    const previous = dataPrevious.title.split(" ").join("-")
-    const next = dataNext.title.split(" ").join("-")
+    const heading = get(this,'props.data.nodeBook.title')
+    var bodyData = get(this, 'props.data.nodeBook.body.value')
+    let nextTitle = get(this, 'props.pageContext.ntitle')
+    if(nextTitle){
+      nextTitle = nextTitle + " >"
+    }
+    const nextPath = get(this, 'props.pageContext.npath')
+    let previousTitle = get(this, 'props.pageContext.ptitle')
+    if(previousTitle){
+      previousTitle = "< " + previousTitle
+    }
+    const previousPath = get(this,'props.pageContext.ppath')
+    const images = get(this, 'props.data.nodeBook.relationships.field_book_image_s_')
+    const featureImage = get(this, 'props.data.nodeBook.relationships.field_feature_.localFile.childImageSharp.gatsbyImageData')
+    
+    for(let i = 0; i < images.length; i++){
+      let imageString = '';
+      if(i & 1){
+        imageString = "<img src='" + images[i].localFile.childImageSharp.gatsbyImageData.images.fallback.src + "' class='embededImage' styles='float: left;' width='400px;'/>"
+        
+      }else{
+        imageString = "<img src='" + images[i].localFile.childImageSharp.gatsbyImageData.images.fallback.src + "' class='embededImage' styles='float: right;' width='400px;'/>"
+        
+      }
+      
+      bodyData = replaceSpecificImage(bodyData, i, imageString)
+      
+    }
+    const navLinks = () => {
+      if(previousTitle === null){
+        if(nextTitle === null){
+          return(<div className={styles.navLinks}>
+            No Links
+          </div>)
+        }else{
+          return(<div className={styles.navLinks}>
+            <div className={styles.navLinksRight}>
+              <Link to={nextPath}>{nextTitle} &gt;</Link>
+            </div>
+          </div>)
+        }
+      }else if(nextTitle === null){
+        return(<div className={styles.navLinks}>
+            <div className={styles.navLinksLeft}>
+              <Link to={previousPath}>{previousTitle} &gt;</Link>
+            </div>
+          </div>)
+      }else{
+          return(<div className={styles.navLinks}>
+            <div className={styles.navLinksLeft}>
+              <Link to={previousPath}>{previousTitle} &gt;</Link>
+            </div>
+            <div className={styles.navLinksRight}>
+              <Link to={nextPath}>{nextTitle} &gt;</Link>
+            </div>
+          </div>)
+      }
+      
+    }
+
+    console.log(navLinks)
     return (
       <Layout location={this.props.location} siteTitle={siteName} navLogo={siteNavLogo}>
-        <Seo
-          title={post.title}
-          description={post.body.processed}
-          image={`http:${post.relationships.field_image.localFile.childImageSharp.gatsbyImageData}`}
-        />
-        <Hero
-          image={post.relationships.field_image.localFile.childImageSharp.gatsbyImageData}
-          title={post.field_image.title}
-          content={post.field_article_slug}
-        />
-        <div className={styles.container}>
-          <span className={styles.meta}>
-            {/* {post.author?.name} &middot;{' '}
-            <time dateTime={post.rawDate}>{post.publishDate}</time> –{' '}
-            {post.body?.childMarkdownRemark?.timeToRead} minute read */}
-          </span>
-          <div className={styles.article}>
-            <div
-              className={styles.body}
-              dangerouslySetInnerHTML={{
-                __html: post.body.processed,
-              }}
-            />
-            {/* <Tags tags={post.tags} /> */}
-            {(previous || next) && (
-              <nav>
-                <ul className={styles.articleNavigation}>
-                  {previous && (
-                    <li>
-                      <Link to={`/blog/${previous.url}`} rel="prev">
-                        ← {previous.title}
-                      </Link>
-                    </li>
-                  )}
-                  {next && (
-                    <li>
-                      <Link to={`/blog/${next.url}`} rel="next">
-                        {next.title} →
-                      </Link>
-                    </li>
-                  )}
-                </ul>
-              </nav>
-            )}
+        <div className={styles.article}>
+          <GatsbyImage image={featureImage} className={styles.featureImage} alt={heading}/>
+          <h1 className={styles.heading}>{heading}</h1>
+          <div className={styles.body} dangerouslySetInnerHTML={{__html:bodyData}}/>
+          
+
+          <div className={styles.navLinks}>
+            <div className={styles.navLinksLeft}>
+              <Link to={previousPath}> {previousTitle}</Link>
+            </div>
+            <div className={styles.navLinksRight}>
+              <Link to={nextPath}>{nextTitle} </Link>
+            </div>
           </div>
         </div>
       </Layout>
@@ -71,36 +101,30 @@ class BlogPostTemplate extends React.Component {
 
 export default BlogPostTemplate
 
-export const pageQuery = graphql`
-query BlogPostById(
-  $id: String!
-  $previousId: String
-  $nextId: String
- ){
-  nodeArticle(drupal_id:{eq:$id})  {
+export const query = graphql`
+query BlogPostById($id: Int!){
+  nodeBook(drupal_internal__nid:{eq:$id}){
     title
-    field_article_slug
     body {
-      processed
+      value
     }
     relationships {
-      field_image {
+      field_feature_ {
         localFile {
           childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+            gatsbyImageData
+          }
+        }
+      }
+      field_book_image_s_ {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
           }
         }
       }
     }
-    created(formatString: "MMMM DD, YYYY")
-    drupal_id
-    field_image {
-      title
-      alt
-    }
   }
-  previous: nodeArticle(drupal_id:{eq:$previousId}) {title}
-  next:nodeArticle(drupal_id:{eq:$nextId}) {title}
   nodeDomain(drupal_internal__nid: {eq: 7}) {
     relationships {
       field_domain_logo {

@@ -20,7 +20,7 @@ class RootIndex extends React.Component{
   render(){
     
     const siteData = this.props?.data?.allNodeDomain.edges[1].node
-    // console.log(siteData)
+   
     
     const siteNavLogo = siteData.relationships.field_domain_logo[1].uri.url
     const siteName = siteData.title
@@ -81,7 +81,7 @@ query DomainData {
           node__domain_services {
             title
             status
-            path{
+            path {
               alias
             }
             drupal_id
@@ -117,19 +117,19 @@ query DomainData {
             }
             localFile {
               childImageSharp {
-                gatsbyImageData(width: 412, layout: CONSTRAINED, placeholder: TRACED_SVG)
+                gatsbyImageData(width: 412, layout: CONSTRAINED, placeholder: BLURRED)
               }
             }
-          },
-          node__domain_about{
-            body{
+          }
+          node__domain_about {
+            body {
               processed
             }
           }
-          node__parallax_divider{
-            relationships{
+          node__parallax_divider {
+            relationships {
               field_parallax_image {
-                internal{
+                internal {
                   content
                 }
                 localFile {
@@ -141,7 +141,7 @@ query DomainData {
           field_domain_about_images {
             localFile {
               childImageSharp {
-                gatsbyImageData(height:400)
+                gatsbyImageData(height: 400)
               }
             }
           }
@@ -160,11 +160,7 @@ query DomainData {
       }
     }
   }
-  allNodeArticle(
-    sort: {order: DESC, fields: created}
-    limit: 3
-    filter: {status: {eq: true}}
-  ) {
+  allNodeArticle(sort: {created: DESC}, limit: 3, filter: {status: {eq: true}}) {
     pageInfo {
       perPage
     }
@@ -206,7 +202,7 @@ query DomainData {
         title
         relationships {
           field_parallax_image {
-            uri{
+            uri {
               url
             }
           }
@@ -264,6 +260,9 @@ query DomainData {
       changed
       created
       field_bpage_description
+      path {
+        alias
+      }
     }
   }
 }

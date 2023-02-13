@@ -1,10 +1,31 @@
 import React, {useRef, useEffect} from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 import * as styles from './articles.module.css'
 import {GatsbyImage} from 'gatsby-plugin-image'
 import Contact from '../components/contact'
+
+function replaceSpecificImage(str, imageNum,) {
+  str = str.replace(/\d+/g, '');
+  return str.replace(new RegExp(`\\[IMAGE-\\]`, 'g'), "");
+}
+
+function shortenString(str, length){
+  var orignalLength = str.length
+  if(length > orignalLength){
+    return str
+  }
+  var endValue = length
+  var number
+  var newStr = ''
+  for(number = 0; number <= endValue; number++){
+    if(str[number].length != 0){
+      newStr += str[number];
+    }
+  }
+  return newStr + '...';
+}
 
 class ArticlesIndex extends React.Component {
 
@@ -13,13 +34,13 @@ class ArticlesIndex extends React.Component {
         
         const articles = this.props?.data?.allNodeBook.nodes
 
-        console.log(articles)
+        
         return(
             <>
                 <Seo title={domain.title} description={"Live by life Technologies blog. Here we write about technology stuff."}/>
                 <Layout location={this.props.location} siteTitle="Articles :: Live by Life Technologies" navLogo={domain.relationships.field_domain_logo[1].uri.url}>
                     {articles.map((article) =>{
-                        
+                        let articleSummary = shortenString(replaceSpecificImage(article.body.processed), 200)
                         let articleImage = article.relationships.field_feature_?.localFile.childImageSharp.gatsbyImageData
                         if(articleImage){
                             return(
@@ -31,15 +52,17 @@ class ArticlesIndex extends React.Component {
                                             <GatsbyImage image={articleImage} className={styles.image} alt={article.title} />
                                             <div className={styles.details}>
                                                 <h1 className={styles.title}>{article.title}</h1>
-                                                <h2 className={styles.content}>{article.field_bpage_description}</h2>
+                                                
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div className={styles.article}>
-                                    <div  dangerouslySetInnerHTML={{__html: article.body.processed,
+                                    <h2 className={styles.content}>{article.field_bpage_description}</h2>
+                                    <div  dangerouslySetInnerHTML={{__html: articleSummary,
                                         }}
                                     />
-                                    
+                                    <Link to={article.path.alias}>Read More</Link>
                                     </div>
                                     
                                 </div>
@@ -101,6 +124,9 @@ export const pageQuery = graphql`query Articles {
       field_bpage_description
       body {
         processed
+      }
+      path {
+        alias
       }
     }
   }
