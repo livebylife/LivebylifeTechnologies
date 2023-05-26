@@ -14,8 +14,31 @@ class AboutIndex extends React.Component {
         const domain = this.props?.data?.nodeDomain
         const aboutData = domain.relationships.node__domain_about[0]
         const parallaxImages = this.props?.data?.allNodeParallaxDivider.edges[0].node
+
+        // Function to prepend the image sources with "https://api.livebylife.com"
+        const prependImageSrc = (html) => {
+          const regex = /<img(.*?)src="(.*?)"(.*?)>/g;
+          const replacedHtml = html.replace(regex, `<img$1src="https://api.livebylife.com$2"$3>`);
+          return replacedHtml;
+        };
+
+        // Function to add "testimonial-image" class to images before blockquotes
+        const addTestimonialImageClass = (html) => {
+          const regex = /<p><img(.*?)><blockquote>/g;
+          const replacedHtml = html.replace(regex, '<p><img$1 class="testimonial-image" style="width:80px"></p><blockquote>');
+          return replacedHtml;
+        };
+
+        const removeImageDimensions = (html) => {
+          const regex = /(<img[^>]+)width="[^"]+"([^>]+)height="[^"]+"/g;
+          const replacedHtml = html.replace(regex, '$1$2');
+          return replacedHtml;
+        };
+        const formattedBody = removeImageDimensions(addTestimonialImageClass(prependImageSrc(aboutData.body.processed)));
+
+
         console.log("about index:")
-        console.log(parallaxImages)
+        console.log(formattedBody)
         
         return(
             <>
@@ -25,7 +48,7 @@ class AboutIndex extends React.Component {
                      <Container>
                       <div className={styles.about}>
                         <h1 className={styles.title}>{aboutData.title}</h1>
-                        <div className={styles.body} dangerouslySetInnerHTML={{__html: aboutData.body.processed}}></div>
+                        <div className={styles.body} dangerouslySetInnerHTML={{__html: formattedBody}}></div>
                       </div>
                     </Container>
                     <ParallaxDivider imageUrl={'https://api.livebylife.com/' + parallaxImages.relationships.field_parallax_image[2].uri.url}/>
