@@ -66,14 +66,14 @@ const Contact = () => {
                 
               </form>
             </div>
-            <div className={styles.chat}>
+            
+        </section><div className={styles.chat}>
             {/* <LazyLoadMessenger
               pageId={process.env.META_PAGE_ID}
               appId={process.env.META_MESSENGER_TOKEN}
               htmlRef={this?.props?.location.pathname}
             /> */}
             </div>
-        </section>
     </>
   )
 }

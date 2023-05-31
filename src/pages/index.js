@@ -54,7 +54,7 @@ class RootIndex extends React.Component{
         />
        
         {/* <ArticlePreview posts={posts}/> */}
-        <AboutPreview aboutContent={siteData.relationships.node__domain_about[0].body.processed}/>  
+        <AboutPreview aboutContent={siteData.relationships.node__domain_about[0].field_meta_description}/>  
         <ServicePreview services={services} />
         <ParallaxDivider imageUrl={parallaxImages[1].relationships.field_parallax_image[1].localFile.url}/>
         <ContactForm location={this.props.location}/>
@@ -125,6 +125,7 @@ query DomainData {
             body {
               processed
             }
+            field_meta_description
           }
           node__parallax_divider {
             relationships {
