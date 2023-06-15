@@ -15,7 +15,7 @@ module.exports = {
   siteMetadata: {
     title: `Live by Life Technologies`,
     siteUrl: `https://www.livebylife.com`,
-    description: `We create blazing fast, modern apps`,
+    description: `Transform Your Digital Presence with Live By Life Technologies. We are your trusted web development partner in Cranbrook, BC. With over a decade of experience, we deliver reliable and customized web solutions that align with your unique goals. From creating exceptional websites to web-based applications, our expertise and dedication make a positive impact. Contact us today and let's bring your digital vision to life.`,
   },
   plugins: [
             "gatsby-plugin-sass",
@@ -35,7 +35,11 @@ module.exports = {
                 options: {
                   "icon": "src/images/icon.png"
                 }
-              }, "gatsby-plugin-sharp",
+              }, 
+              {
+                resolve: "gatsby-plugin-sharp",
+              
+              },
               {
                 resolve:'gatsby-source-drupal',
                 options:{

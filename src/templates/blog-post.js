@@ -13,11 +13,12 @@ function replaceSpecificImage(str, imageNum, newString) {
 
 class BlogPostTemplate extends React.Component {
   render() {
-    console.log(this.props.pageContext)
     const siteNavLogo = get(this, 'props.data.nodeDomain.relationships.field_domain_logo[1].uri.url')
     const siteName = get(this, 'props.data.nodeDomain.title')
     const heading = get(this,'props.data.nodeBook.title')
+    const pageTitle = heading + " : " + siteName
     var bodyData = get(this, 'props.data.nodeBook.body.value')
+    const seoDescription = get(this, 'props.data.nodeBook.body.summary')
     let nextTitle = get(this, 'props.pageContext.ntitle')
     if(nextTitle){
       nextTitle = nextTitle + " >"
@@ -75,10 +76,17 @@ class BlogPostTemplate extends React.Component {
       }
       
     }
-
-    console.log(navLinks)
+    
+    
     return (
-      <Layout location={this.props.location} siteTitle={siteName} navLogo={siteNavLogo}>
+      <Layout 
+        location={this.props.location} 
+        pageTitle={pageTitle} 
+        siteTitle={siteName} 
+        navLogo={siteNavLogo}
+        seoDescription={seoDescription}
+        seoImage={featureImage}
+        >
         <div className={styles.article}>
           <GatsbyImage image={featureImage} className={styles.featureImage} alt={heading}/>
           <h1 className={styles.heading}>{heading}</h1>
@@ -107,6 +115,7 @@ query BlogPostById($id: Int!){
     title
     body {
       value
+      summary
     }
     relationships {
       field_feature_ {

@@ -11,7 +11,7 @@ class ServicesIndex extends React.Component {
     render() {
       const domain = this.props?.data?.nodeDomain
       const servicesOriginal = domain.relationships
-      
+      const pageTitle = "What we're offering: " + domain.title
       let services = servicesOriginal.node__domain_services.map(function(service){
                       return{
               "title": service.title,
@@ -22,15 +22,20 @@ class ServicesIndex extends React.Component {
               "id": service.drupal_id
           }
       })
+      const seoDescription = "services[(services.length - 1)].body"
+      const seoImage = "services[(services.length - 1)].images[0].localFile.childImageSharp.gatsbyImageData"
       
       return (
         <> 
-          <Seo
-            title={domain.title}
-            description={services[(services.length - 1)].body}
-            image={services[(services.length - 1)].images[0].localFile.childImageSharp.gatsbyImageData}
-        />
-        <Layout location={this.props.location} siteTitle={domain.title} navLogo={domain.relationships.field_domain_logo[1].uri.url}>
+          
+        <Layout 
+          location={this.props.location} 
+          siteTitle={domain.title} 
+          navLogo={domain.relationships.field_domain_logo[1].uri.url}
+          pageTitle={pageTitle}
+          seoDescription={seoDescription}
+          seoImage={seoImage}
+          >
             {services.map((sItem) => {
               
               return(
