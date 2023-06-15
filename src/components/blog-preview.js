@@ -19,6 +19,7 @@ function extractBooks(data) {
         'id': node.drupal_internal__nid,
         'title': node.title,
         'fImage': node.relationships.field_feature_,
+        'fImageAlt':node.field_feature_.alt,
         'images': node.relationships.field_book_image_s_,
         'pages': [],
         'url': changeFirstLetterCase(node.title),
@@ -71,11 +72,10 @@ const BlogPreview = (Books) => {
                 let bookImage = {}
                 if(book.relationships.field_feature_){
                   bookImage = book.relationships.field_feature_.localFile.childImageSharp.gatsbyImageData
-                  console.log(bookImage)
                   return (
                     <li className={styles.item} key={book.drupal_internal__nid}>
                         <Link to={`${book.path.alias}`}>
-                          <GatsbyImage image={bookImage} width="336px" className={styles.articleImage} alt=""/>
+                          <GatsbyImage image={bookImage} width="336px" className={styles.articleImage} alt={book.field_feature_.alt}/>
                           <br/>
                           <div className={styles.article_title_wrap}>
                             <h2 className={styles.title}>{book.title}</h2>

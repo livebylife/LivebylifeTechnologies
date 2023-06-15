@@ -60,7 +60,7 @@ class RootIndex extends React.Component{
         <ContactForm location={this.props.location}/>
         {/* <BackgroundImage/> */}
         </Layout>
-        <BlogPreview/>
+        
       </>
     )
   }
@@ -213,6 +213,9 @@ query DomainData {
   }
   nodeDomainServices(drupal_internal__nid: {eq: 27}) {
     title
+    field_ds_images {
+      alt
+    }
     body {
       value
     }
@@ -246,6 +249,9 @@ query DomainData {
       }
       drupal_internal__nid
       title
+      field_feature_ {
+        alt
+      }
       relationships {
         field_feature_ {
           localFile {

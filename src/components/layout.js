@@ -10,11 +10,14 @@ class Template extends React.Component {
   render() {
     const navLogo = this.props.navLogo
     const siteTitle = this.props.siteTitle
+    const pageTitle = this.props.pageTitle
+    const seoDescription = this.props.seoDescription
+    const seoImage = this.props.seoImage
     const { children } = this.props
     
     return (
       <>
-        <Seo />
+        <Seo description={seoDescription} image={seoImage} title={pageTitle} />
           <Navigation logo={navLogo} title={siteTitle} />
         <main>{children}</main>
         <div className={styles.downScrollArrowContainer}>

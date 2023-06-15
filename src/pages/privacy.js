@@ -11,7 +11,7 @@ import * as styles from './privacy.module.css'
 class PrivacyIndex extends React.Component {
     render(){
         const siteData = this.props?.data?.nodeDomain
-        const siteName = siteData?.title
+        const siteName = "Privacy Policy: " + siteData?.title
         const siteNavLogo = siteData?.relationships.field_domain_logo[0].uri.url
         const parallaxImages = siteData?.relationships.node__parallax_divider[0].relationships.field_parallax_image[3].uri.url
         const policy = siteData?.field_privacy_policy.processed

@@ -20,7 +20,7 @@ const ServicePreview = ({services}) => {
                                 <Link to={`/services#${service.path.alias}`} className={styles.link}>
                                     <GatsbyImage 
                                         image={service.relationships.field_ds_images[0].localFile.childImageSharp.gatsbyImageData} 
-                                        alt=""
+                                        alt={service.field_ds_images[0].alt}
                                         width="270px"
                                         height="180px"
                                         className={styles.serviceImage}
