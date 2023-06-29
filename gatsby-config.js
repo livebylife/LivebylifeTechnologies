@@ -18,6 +18,34 @@ module.exports = {
     description: `Transform Your Digital Presence with Live By Life Technologies. We are your trusted web development partner in Cranbrook, BC. With over a decade of experience, we deliver reliable and customized web solutions that align with your unique goals. From creating exceptional websites to web-based applications, our expertise and dedication make a positive impact. Contact us today and let's bring your digital vision to life.`,
   },
   plugins: [
+            {
+              resolve:"gatsby-plugin-robots-txt",
+              options:{
+                host: 'https://www.livebylife.com',
+                sitemap: 'https://www.livebylife.com/sitemap-0.xml',
+                resolveEnv: () => process.env.GATSBY_ENV,
+                env: {
+                  development: {
+                    policy: [{userAgent: '*', disallow: ['/']}]
+                  },
+                  production: {
+                    policy: [{userAgent: '*', allow: '/'}]
+                  }
+                }
+              }
+            },
+            {
+              resolve:"gatsby-plugin-google-tagmanager",
+              options:{
+                id: process.env.GOOGLE_TAGMANAGER_ID,
+                defaultDataLayer: {platform:"gatsby"},
+                gtmAuth: process.env.GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING,
+                gtmPreview:process.env.GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME,
+                dataLayerName:process.env.DATA_LAYER_NAME,
+                routeChangeEventName: "gatsby-route-change",
+                enableWebVitalsTracking: true,
+              },
+            },
             "gatsby-plugin-sass",
             "gatsby-plugin-image",
             "gatsby-plugin-react-helmet", 
