@@ -5,7 +5,7 @@ import axios from "axios"
 
 export default async function handleSubmit(req, res){
 
-// ~~~ from freeCodeCamp
+
     let csrfToken = await axios.get(
         'https://api.livebylife.com/session/token'
         )
