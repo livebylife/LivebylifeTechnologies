@@ -16,8 +16,8 @@
   },
   "proxy": "https://api.livebylife.com",
   "dependencies": {
+    "@netlify/plugin-gatsby": "^3.7.2",
     "@emotion/react": "^11.10.5",
-    "@netlify/plugin-gatsby": "^3.7.1",
     "babel-plugin-styled-components": "^2.0.7",
     "gatsby": "^5.12.5",
     "gatsby-image": "^3.11.0",
