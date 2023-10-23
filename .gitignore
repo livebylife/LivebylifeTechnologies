@@ -9,3 +9,6 @@ fonts/
 fromcanva/
 articles/
 articles.*
+
+# Local Netlify folder
+.netlify
