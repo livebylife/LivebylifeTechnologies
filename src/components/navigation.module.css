@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
+/* Global Styles for Mobile Devices */
+body {
+  font-size: 16px; /* Base font size for mobile */
+}
+
 .container {
   display: flex;
   justify-content: space-between;
   max-width: 100vw;
   align-items: center;
   margin: 0 auto;
-  padding: var(--space-2xl) var(--size-gutter);
+  padding: 1rem 2rem; /* Use responsive units like 'rem' for padding */
   position: sticky;
   position: -webkit-sticky;
-  top:0;
+  top: 0;
   overflow: hidden;
   z-index: 100;
   background-color: white;
@@ -20,7 +25,7 @@
   display: flex;
   list-style: none;
   margin: 0;
-  gap: var(--space-xl);
+  gap: 1rem; /* Adjust the spacing for mobile */
 }
 
 .navigationItem {
@@ -53,35 +58,35 @@
   flex-direction: row;
   flex-shrink: 0;
   font-family: var(--font-sans);
-  gap: var(--space-md);
-}
-
-@media (max-width: 767px) {
-  .logoLink > span:last-child {
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
+  gap: 1rem; /* Adjust the spacing for mobile */
 }
 
 .logo {
   height: var(--size-logo);
   width: var(--size-logo);
   display: block;
-  /* background-image: url("/images/LiveByLifeIcon_gold_withCircle_600x600.png"); */
 }
 
 .tsParticles {
   position: absolute;
-  padding:unset;
+  padding: unset;
   width: 100%;
-  height: "200px";
+  height: 200px; /* Use responsive units like 'rem' or 'vw' for height */
   z-index: -1;
   font-family: 'Orbitron', sans-serif;
+}
+
+/* Media Query for Larger Screens (Add as needed) */
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem 4rem; /* Adjust padding for larger screens */
+  }
+
+  .navigation {
+    gap: 2rem; /* Adjust the spacing for larger screens */
+  }
+
+  .logoLink {
+    gap: 2rem; /* Adjust the spacing for larger screens */
+  }
 }

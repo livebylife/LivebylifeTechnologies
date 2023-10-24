@@ -11,7 +11,7 @@
 }
 .servicesTitle {
   display: inline-block;
-  font-size: var(--text-4xl);
+  font-size: 2em;
   font-family: var(--font-monospace);
   margin-bottom: var(--space-xs);
   margin-top: var(--space-lg);

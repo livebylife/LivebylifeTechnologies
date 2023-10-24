@@ -54,6 +54,13 @@ function extractPages(data, books) {
 function changeFirstLetterCase(str) {
   return str.toLowerCase().split(' ').map((word) => word[0].toUpperCase() + word.slice(1)).join('_');
 }
+
+function limitString(str, maxLength){
+  if(str.length > maxLength){
+    return str.substring(0, maxLength) + '...';
+  }
+  return str
+}
 const BlogPreview = (Books) => {
   
   var books = []
@@ -82,7 +89,7 @@ const BlogPreview = (Books) => {
                           </div>
                           
                           <div className={styles.articleSlug}>
-                            {book.field_bpage_description}
+                            {book.field_bpage_description.substring(0, 90)+ '...'}
                           </div>
                         
                         </Link>
